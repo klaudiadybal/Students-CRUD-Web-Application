@@ -6,6 +6,8 @@ import com.springboot.crudweb.service.StudentServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -27,5 +29,20 @@ public class StudentController {
         model.addAttribute("students", students);
 
         return "students";
+    }
+
+    @GetMapping("/saveForm")
+    public String showSaveForm(Model model){
+        Student student = new Student();
+        model.addAttribute("student", student);
+
+        return "form";
+    }
+
+    @PostMapping("/save")
+    public String saveStudent(@ModelAttribute("student") Student student){
+        studentService.save(student);
+
+        return "redirect:/students/list";
     }
 }
