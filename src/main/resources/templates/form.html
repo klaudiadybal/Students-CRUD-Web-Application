@@ -14,13 +14,16 @@
             <form action="#" th:action="@{/students/save}" th:object="${student}" method="post">
                 <input type="hidden" th:field="${student.id}"/>
                 <div class="mb-3">
-                    <input type="text" th:field="${student.firstName}" class="form-control" id="firstName" placeholder="Enter first name"/>
+                    <input type="text" th:field="${student.firstName}" class="form-control" id="firstName" placeholder="First name" th:errorclass="is-invalid"/>
+                    <div id="firstNameValidation" class="invalid-feedback" th:errors="${student.firstName}"></div>
                 </div>
                 <div class="mb-3">
-                    <input type="text" th:field="${student.lastName}" class="form-control" id="lastName" placeholder="Enter last name"/>
+                    <input type="text" th:field="${student.lastName}" class="form-control" id="lastName" placeholder="Last name" th:errorclass="is-invalid"/>
+                    <div id="lastNameValidation" class="invalid-feedback" th:errors="${student.lastName}"></div>
                 </div>
                 <div class="mb-3">
-                    <input type="text" th:field="${student.email}" class="form-control" id="email" placeholder="Enter email"/>
+                    <input type="text" th:field="${student.email}" class="form-control" id="email" placeholder="Email address" th:errorclass="is-invalid"/>
+                    <div id="emailValidation" class="invalid-feedback" th:errors="${student.email}"></div>
                 </div>
                 <button type="submit" class="my-3 btn btn-primary btn-dark">Submit</button>
                 <a th:href="@{/students/list}" class="btn btn-primary btn-dark">Back to Students List</a>

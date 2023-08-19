@@ -3,8 +3,10 @@ package com.springboot.crudweb.controller;
 import com.springboot.crudweb.entity.Student;
 import com.springboot.crudweb.service.StudentService;
 import com.springboot.crudweb.service.StudentServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,10 +39,13 @@ public class StudentController {
     }
 
     @PostMapping("/save")
-    public String saveStudent(@ModelAttribute("student") Student student){
-        studentService.save(student);
+    public String saveStudent(@Valid @ModelAttribute("student") Student student, Errors errors){
 
-        return "redirect:/students/list";
+        if(!errors.hasErrors()){
+            studentService.save(student);
+            return "redirect:/students/list";
+        }
+        return "form";
     }
 
     @GetMapping("/updateForm")

@@ -1,6 +1,8 @@
 package com.springboot.crudweb.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="student")
@@ -11,12 +13,16 @@ public class Student {
     @Column(name="id")
     private int id;
 
+    @NotEmpty(message = "Enter first name.")
     @Column(name="first_name")
     String firstName;
 
+    @NotEmpty(message = "Enter last name.")
     @Column(name="last_name")
     String lastName;
 
+    @NotEmpty(message = "Enter email address.")
+    @Email(message = "Email must be valid.")
     @Column(name="email")
     String email;
 
