@@ -51,4 +51,11 @@ public class StudentController {
 
         return "form";
     }
+
+    @GetMapping("/delete")
+    public String deleteStudent(@RequestParam("id") int id){
+        studentService.delete(id);
+
+        return "redirect:/students/list";
+    }
 }
