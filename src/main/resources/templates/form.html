@@ -12,6 +12,7 @@
             <h2>Student Form</h2>
             <hr>
             <form action="#" th:action="@{/students/save}" th:object="${student}" method="post">
+                <input type="hidden" th:field="${student.id}"/>
                 <div class="mb-3">
                     <input type="text" th:field="${student.firstName}" class="form-control" id="firstName" placeholder="Enter first name"/>
                 </div>

@@ -3,6 +3,7 @@ package com.springboot.crudweb.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name="student")
 public class Student {
 
     @Id
@@ -22,6 +23,13 @@ public class Student {
     public Student() {}
 
     public Student(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
+    public Student(int id, String firstName, String lastName, String email) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

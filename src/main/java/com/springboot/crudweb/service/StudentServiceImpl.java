@@ -5,6 +5,7 @@ import com.springboot.crudweb.entity.Student;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -23,7 +24,13 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student find(int id) {
-        return null;
+        Optional<Student> student = studentRepository.findById(id);
+
+        if(student.isPresent()){
+            return student.get();
+        } else {
+            throw new RuntimeException("Student not found");
+        }
     }
 
     @Override
